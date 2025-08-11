@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.10",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.4",
     "next": "15.4.6",
