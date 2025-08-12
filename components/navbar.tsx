@@ -24,7 +24,7 @@ export default function Navbar() {
   
   return (
     <header>
-      <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+      <div className="px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -47,11 +47,11 @@ export default function Navbar() {
           {/* Menu Items */}
           <div className="md:flex md:items-center md:gap-12">
             <nav aria-label="Global" className="hidden md:block">
-              <ul className="flex items-center gap-6 text-sm">
+              <ul className="flex items-center gap-6 text-sm font-semibold">
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href="/home"
                   >
                     Home
                   </a>
@@ -60,7 +60,7 @@ export default function Navbar() {
                 <li>
                   <a
                     className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
-                    href="#"
+                    href="/worksheets"
                   >
                     Worksheets
                   </a>
