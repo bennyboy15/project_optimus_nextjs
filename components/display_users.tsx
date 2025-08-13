@@ -1,6 +1,7 @@
 "use client";
 
 import { deleteUser } from "@/app/test/actions/actions";
+import router, { useRouter } from "next/navigation";
 
 type User = {
   id: number;
@@ -9,6 +10,11 @@ type User = {
 };
 
 export default function ViewUsers({ users }: { users: User[] }) {
+  const router = useRouter();
+  const handleEdit = (userID: number) => {
+    router.push(`/test/${userID}`);
+  };
+  
   return (
     <div className="rounded border-2 dark:border-gray-400 dark:bg-gray-700/50">
       {/* Title */}
@@ -37,7 +43,7 @@ export default function ViewUsers({ users }: { users: User[] }) {
               >
                 {user.role}
               </button>
-              <p>{user.name}</p>
+              <p>{user.id} {user.name}</p>
             </div>
 
             <div className="inline-flex gap-0.5">
@@ -64,7 +70,7 @@ export default function ViewUsers({ users }: { users: User[] }) {
                 </svg>
               </button>
 
-              <button className="-ml-px border border-gray-200 hover:border-orange-500 px-3 py-2 hover:border-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white">
+              <button onClick={() => handleEdit(user.id)} className="-ml-px border border-gray-200 hover:border-orange-500 px-3 py-2 hover:border-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white">
                 {/* Edit */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
