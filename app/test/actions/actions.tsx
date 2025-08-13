@@ -44,7 +44,8 @@ export async function createUser(formData: FormData) {
   revalidatePath("/test");
 }
 
-export async function editUser(id: number, formData: FormData) {
+export async function editUser(formData: FormData) {
+  const id = Number(formData.get("id"));
   const name = formData.get("name") as string;
   const role = formData.get("role") as string;
 
@@ -59,6 +60,10 @@ export async function deleteUser(id: number) {
 
 export async function getUsers() {
   return await db.select().from(optimusUsers);
+}
+
+export async function getUser(id: number) {
+  return await db.select().from(optimusUsers).where(eq(optimusUsers.id, id))
 }
 
 
