@@ -201,41 +201,11 @@ export async function createTruck(formData: FormData) {
     throw new Error("Customer, Salesman, Make, and Model are required.");
   }
 
-  // Optional fields
-  const fleetNo = formData.get("fleetNo") as string | null;
-  const stockNo = formData.get("stockNo") as string | null;
-  const chassisNo = formData.get("chassisNo") as string | null;
-  const registration = formData.get("registration") as string | null;
-
-  const offlineDate = formData.get("offlineDate") ? Number(formData.get("offlineDate")) : null;
-  const deliveryDate = formData.get("deliveryDate") ? Number(formData.get("deliveryDate")) : null;
-
-  const truckColour = formData.get("truckColour") as string | null;
-  const chassisColour = formData.get("chassisColour") as string | null;
-  const trimColour = formData.get("trimColour") as string | null;
-
-  const status = formData.get("status") ? Number(formData.get("status")) : 0;
-  const A4_stickers_done = formData.get("A4_stickers_done") === "true" ? 1 : 0;
-  const small_stickers_done = formData.get("small_stickers_done") === "true" ? 1 : 0;
-
   await db.insert(trucks).values({
-    [trucks.customerId.name]: customerId, // Use the column object name
-    [trucks.salesmanId.name]: salesmanId,
-    [trucks.makeId.name]: makeId,
-    [trucks.modelId.name]: modelId,
-    /*
-    fleetNo: fleetNo ?? null,
-    stockNo: stockNo ?? null,
-    chassisNo: chassisNo ?? null,
-    registration: registration ?? null,
-    offlineDate: offlineDate ?? null,
-    deliveryDate: deliveryDate ?? null,
-    truckColour: truckColour ?? null,
-    chassisColour: chassisColour ?? null,
-    trimColour: trimColour ?? null,
-    status,
-    A4_stickers_done,
-    small_stickers_done*/
+    customerId: customerId,
+    salesmanId: salesmanId,
+    makeId: makeId,
+    modelId: modelId,
   });
 
   revalidatePath("/admin");

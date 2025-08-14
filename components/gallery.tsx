@@ -3,12 +3,31 @@ import { getCustomer } from "@/app/admin/actions/admin_actions"
 type Props = {
     createdOn: Date,
     customerId: number,
+    status: number
 }
 
-export default async function Gallery({ createdOn, customerId} : Props) {
+export default async function Gallery({ createdOn, customerId, status} : Props) {
     const customer = (await getCustomer(customerId))[0];
     return (
-        <div className="w-1/3 transform transition-transform duration-200 ease-out hover:scale-105">
+        <div className="relative transform transition-transform duration-200 ease-out hover:scale-105">
+            <div className={`absolute top-3 left-3 w-4 h-4 rounded-[8px] bg-amber-500 border-2 border-amber-700
+                ${
+                    status === 0 ? "bg-green-600 border-green-900" :
+                    status === 1 ? "bg-blue-500 border-blue-900" :
+                    status === 2 ? "bg-amber-600 border-amber-900" :
+                    status === 3 ? "bg-purple-600 border-purple-900" :
+                    "bg-gray-300 border-gray-600"
+                }`}>
+            </div>
+            <div className="absolute top-3 right-3">
+                <button className="flex items-center gap-2 bg-white border border-gray-400 text-gray-600 px-2 py-1 rounded-xl text-[12px] hover:cursor-pointer hover:bg-blue-100 hover:border-blue-500 hover:text-blue-500">
+                    View
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-eye-fill" viewBox="0 0 16 16">
+                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                    </svg>
+                </button>
+            </div>
             <article
                 className="overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25"
             >
