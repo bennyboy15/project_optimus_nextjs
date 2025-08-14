@@ -1,6 +1,14 @@
-export default function Gallery() {
+import { getCustomer } from "@/app/admin/actions/admin_actions"
+
+type Props = {
+    createdOn: Date,
+    customerId: number,
+}
+
+export default async function Gallery({ createdOn, customerId} : Props) {
+    const customer = (await getCustomer(customerId))[0];
     return (
-        <div className="w-1/3">
+        <div className="w-1/3 transform transition-transform duration-200 ease-out hover:scale-105">
             <article
                 className="overflow-hidden rounded-lg shadow-sm transition hover:shadow-lg dark:shadow-gray-700/25"
             >
@@ -12,12 +20,12 @@ export default function Gallery() {
 
                 <div className="bg-white p-4 sm:p-6 dark:bg-gray-900">
                     <time dateTime="2022-10-10" className="block text-xs text-gray-500 dark:text-gray-400">
-                        10th Oct 2022
+                        {createdOn.toLocaleDateString()}
                     </time>
 
                     <a href="#">
                         <h3 className="mt-0.5 text-lg text-gray-900 dark:text-white">
-                            How to position your furniture for positivity
+                            {customer.name}
                         </h3>
                     </a>
 

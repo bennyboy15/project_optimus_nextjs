@@ -1,49 +1,38 @@
 "use client";
 
-import { deleteUser } from "@/app/test/actions/actions";
-import router, { useRouter } from "next/navigation";
+import { deleteCustomer } from "@/app/admin/actions/admin_actions";
+import { useRouter } from "next/navigation";
 
-type User = {
+type Customer = {
   id: number;
   name: string;
-  role: string;
 };
 
-export default function ViewUsers({ users }: { users: User[] }) {
+export default function ViewCustomers({ customers }: { customers: Customer[] }) {
   const router = useRouter();
-  const handleEdit = (userID: number) => {
-    router.push(`/test/${userID}`);
+  const handleEdit = (customerID: number) => {
+    router.push(`/admin/customer/${customerID}`);
   };
   
   return (
     <div className="rounded border-2 dark:border-gray-400 dark:bg-gray-700/50">
       {/* Title */}
       <h1 className="font-semibold text-2xl p-2 border-b-2 dark:border-gray-400">
-        User List
+        Customer List
       </h1>
 
-      {/* User List */}
+      {/* Customer List */}
       <div>
-        {users.map((user) => (
+        {customers.map((customer) => (
           <div
-            key={user.id}
+            key={customer.id}
             className="flex items-center justify-between p-2 hover:bg-gray-600/50"
           >
             <div className="flex items-center gap-2">
-              <button
-                className={`rounded px-2 py-1 border-2 font-semibold min-w-15 ${
-                  user.role === "IT"
-                    ? "bg-blue-300 border-blue-900 text-blue-900"
-                    : user.role === "Sales"
-                    ? "bg-green-400 border-green-900 text-green-900"
-                    : user.role === "PD"
-                    ? "bg-purple-300 border-purple-900 text-purple-900"
-                    : "bg-gray-300 border-gray-600 text-gray-800"
-                }`}
-              >
-                {user.role}
+              <button className={"rounded px-2 py-1 border-2 font-semibold min-w-15 bg-gray-300 border-gray-600 text-gray-800"}>
+                {customer.id}
               </button>
-              <p>{user.id} {user.name}</p>
+              <p>{customer.name}</p>
             </div>
 
             <div className="inline-flex gap-0.5">
@@ -70,7 +59,7 @@ export default function ViewUsers({ users }: { users: User[] }) {
                 </svg>
               </button>
 
-              <button onClick={() => handleEdit(user.id)} className="-ml-px border border-gray-200 hover:border-orange-500 px-3 py-2 hover:border-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white">
+              <button onClick={() => handleEdit(customer.id)} className="-ml-px border border-gray-200 hover:border-orange-500 px-3 py-2 hover:border-2 text-gray-700 transition-colors hover:bg-gray-50 hover:text-gray-900 dark:border-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-white">
                 {/* Edit */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +79,7 @@ export default function ViewUsers({ users }: { users: User[] }) {
 
               <form
                 action={async () => {
-                  await deleteUser(user.id);
+                  await deleteCustomer(customer.id);
                 }}
               >
                 <button

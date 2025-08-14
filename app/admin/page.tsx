@@ -1,7 +1,14 @@
 import InfoCard from "@/components/info_card";
-import UserForm from "@/components/user_form";
-import { getUsers } from "../test/actions/actions";
-import ViewUsers from "@/components/display_users";
+import UserForm from "@/components/user/user_form";
+import { getSalesmen, getTrucks, getUsers } from "@/app/admin/actions/admin_actions";
+import ViewUsers from "@/components/user/display_users";
+import CustomerForm from "@/components/customer/customer_form";
+import { getCustomers } from "./actions/admin_actions";
+import ViewCustomers from "@/components/customer/display_customers";
+import SalesmanForm from "@/components/salesman/salesman_form";
+import ViewSalesmen from "@/components/salesman/display_salesmen";
+import TruckForm from "@/components/truck/truck_form";
+import ViewTrucks, { Truck } from "@/components/truck/display_trucks";
 
 export default async function Admin() {
     const cards = [
@@ -22,6 +29,9 @@ export default async function Admin() {
     ];
 
     const users = await getUsers();
+    const customers = await getCustomers();
+    const salesmen = await getSalesmen();
+    const trucks = await getTrucks();
 
     return (
         
@@ -40,13 +50,43 @@ export default async function Admin() {
                 ))}
             </div>
 
-            {/* Form */}
+            {/* User Form */}
             <div className="flex w-full gap-4 px-8 mt-4">
                 <div className="flex-1">
                     <UserForm/>
                 </div>
                 <div className="flex-2">
                     <ViewUsers users={users}/>
+                </div>
+            </div>
+
+            {/* Customer Form */}
+            <div className="flex w-full gap-4 px-8 mt-4">
+                <div className="flex-1">
+                    <CustomerForm/>
+                </div>
+                <div className="flex-2">
+                    <ViewCustomers customers={customers}/>
+                </div>
+            </div>
+
+            {/* Salesmen Form */}
+            <div className="flex w-full gap-4 px-8 mt-4">
+                <div className="flex-1">
+                    <SalesmanForm/>
+                </div>
+                <div className="flex-2">
+                    <ViewSalesmen salesmen={salesmen}/>
+                </div>
+            </div>
+
+            {/* Truck Form */}
+            <div className="flex w-full gap-4 px-8 mt-4">
+                <div className="flex-1">
+                    <TruckForm/>
+                </div>
+                <div className="flex-2">
+                    <ViewTrucks trucks={trucks} customers={customers}/>
                 </div>
             </div>
         </div>

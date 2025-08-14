@@ -1,4 +1,4 @@
-import { editUser, getUser } from "../actions/actions";
+import { editUser, getUser } from "@/app/admin/actions/admin_actions";
 
 type User = {
     name:string,
