@@ -1,4 +1,15 @@
 import { createUser } from "@/app/admin/actions/admin_actions";
+import { SubmitButton } from "../ui/submit_button";
+import { Input } from "../ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 export default function UserForm() {
 
@@ -14,70 +25,47 @@ export default function UserForm() {
         className="flex flex-col gap-2 p-4 rounded text-gray-800 dark:text-gray-200 font-semibold">
         <div className="flex gap-4">
           <label htmlFor="name" className="min-w-20">Name</label>
-          <input
-            type="text"
-            name="name"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Name..."
-          />
+          <Input name="name" required placeholder="Name..."/>
         </div>
 
         <div className="flex gap-4">
           <label className="min-w-20" htmlFor="username">Username</label>
-          <input
-            type="text"
-            name="username"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Username..."
-          />
+          <Input name="username" required placeholder="Username..."/>
         </div>
 
         <div className="flex gap-4">
           <label className="min-w-20" htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Password..."
-          />
+          <Input name="password" type="password" required placeholder="Password..."/>
         </div>
 
         <div className="flex gap-4">
           <label className="min-w-20" htmlFor="email">Email</label>
-          <input
-            type="text"
-            name="email"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Email..."
-          />
+          <Input name="email" required placeholder="Email..."/>
         </div>
 
         <div className="flex gap-4">
           <label className="min-w-20" htmlFor="phone">Phone</label>
-          <input
-            type="text"
-            name="phone"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Phone..."
-          />
+          <Input name="phone" required placeholder="Phone..."/>
         </div>
 
         <div className="flex gap-4">
           <label className="min-w-20" htmlFor="role">Role</label>
-          <input
-            type="text"
-            name="role"
-            className="w-full px-2 rounded border border-gray-200 shadow bg-white dark:text-gray-800"
-            placeholder="Role..."
-          />
+          <Select name="role" required>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Role..." />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>Roles</SelectLabel>
+              <SelectItem value="Admin">Admin</SelectItem>
+              <SelectItem value="Sales">Sales</SelectItem>
+              <SelectItem value="PD">PD</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         </div>
 
-        <button
-          type="submit"
-          className="rounded w-full px-2 py-1 text-white bg-green-500 font-semibold disabled:opacity-50"
-        >
-          SUBMIT
-        </button>
+        <SubmitButton title="Submit"/>
       </form>
     </div>
   );

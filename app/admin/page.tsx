@@ -9,6 +9,7 @@ import SalesmanForm from "@/components/salesman/salesman_form";
 import ViewSalesmen from "@/components/salesman/display_salesmen";
 import TruckForm from "@/components/truck/truck_form";
 import ViewTrucks, { Truck } from "@/components/truck/display_trucks";
+import { DarkModeButton } from "@/components/darkmode";
 
 export default async function Admin() {
     const cards = [
@@ -36,6 +37,8 @@ export default async function Admin() {
     return (
         
         <div>
+        <DarkModeButton/>
+
             {/* Admin Cards */}
             <div className="flex w-full gap-4 px-8 mt-4">
                 {cards.map((card, index) => (

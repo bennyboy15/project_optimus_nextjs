@@ -1,4 +1,5 @@
 import { createSalesman, getUsers } from "@/app/admin/actions/admin_actions"
+import { SubmitButton } from "../ui/submit_button";
 
 export default async function SalesmanForm() {
   const users = await getUsers()
@@ -32,12 +33,7 @@ export default async function SalesmanForm() {
           />
         </div>
 
-        <button
-          type="submit"
-          className="rounded w-full px-2 py-1 text-white bg-green-500 font-semibold disabled:opacity-50"
-        >
-          SUBMIT
-        </button>
+        <SubmitButton title="Submit"/>
       </form>
     </div>
   );
